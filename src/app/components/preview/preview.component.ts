@@ -33,6 +33,7 @@ export class PreviewComponent {
 
   public submitConsent(): void {
     this.emailService.sendEmail(this.data.customerName, this.data.pdfFile);
+    console.log('console')
     this.matSnackBar.open('Consent Forms submitted', 'X', { duration: 2000 });
     this.router.navigate(['/main']);
   }
