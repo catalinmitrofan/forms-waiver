@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <pdf-viewer class="pdf-viewer" [src]="pdfURL" [original-size]="false"></pdf-viewer>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close Preview</button>
+  <button mat-button mat-dialog-close (click)="submitConsent()">
+    Submit consent
+  </button>
+</mat-dialog-actions>

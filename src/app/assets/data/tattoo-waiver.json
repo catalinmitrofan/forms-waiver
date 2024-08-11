@@ -1,0 +1,40 @@
+{
+  "consents": [
+    {
+      "consent": "I am of the understanding that I will be tattooed in a method that is both sterile and efficient as well as compliant with local and federal tattoo regulations.",
+      "label": "Sterility",
+      "fieldName": "sterile"
+    },
+    {
+      "consent": "I agree to heal my tattoo according to the artist recommendation and use the provided/described aftercare products and methods. With the understanding that a free touch-up if required can only be guaranteed if I use this method.",
+      "label": "Healing",
+      "fieldName": "healing"
+    },
+    {
+      "consent": "I understand that my tattoo can take between 2 weeks and a month to heal, and Golden Falcon will not perform touch-up work before it is fully healed.",
+      "label": "Touch Ups",
+      "fieldName": "touchUps"
+    },
+    {
+      "consent": "I understand that my tattoo is permanent, however it will not settle (show true color, and outcome) until it is fully healed. And that skin type and color will affect every design in a way unique to each client. And in the process things can happen including but not limited too movement causing a line to be less than perfect, or issues arising with color choices and minor imperfections in the tattoo. Tattooing is an Art not a science and though we guarantee our work, this does not mean that mistakes wont happen. I am agreeing to trust the artist to make these things right in the way they deem most appropriate.",
+      "label": "Trusting",
+      "fieldName": "settle"
+    },
+    {
+      "consent": "I will inform the studio of ANY known allergies, and that people may be allergic to pigments and equipment used and assume the risk of any reaction.",
+      "label": "Allergies",
+      "fieldName": "allergies"
+    },
+    {
+      "consent": "I understand that my artist does not guarantee meaning on any symbol or design provided, I have done my research and checked the spelling on each stencil to ensure that it is to my satisfaction and knowledge.",
+      "label": "Meanings & Design",
+      "fieldName": "design"
+    },
+    {
+      "consent": "I understand that a tattoo is a wound, and with any wound risk of infection from any outside source is possible. Upon signing and initialing this form I am agree to take responsibility for that risk. I will inform the management if I find that an artist is not being sterile with his/her set up before I proceed receiving my service. Once I am in the chair I have been satisfied with the technique the artist has used and wave all rights to claim otherwise after service has been provided.",
+      "label": "Responsibility",
+      "fieldName": "responsibility"
+    }
+  ],
+  "disclaimer": "I certify that the information provided below is correct to the best of my knowledge. I enter this agreement on my own free will and am not under the influence of any substances that my hinder my ability to consent legally or ethically to the service (tattoo) provided. I also certify that I am at least 18 years of age."
+}

@@ -1,0 +1,54 @@
+<form [formGroup]="stepperFormGroup" (keydown.enter)="(false)">
+  <mat-vertical-stepper [linear]="isLinear" formArrayName="stepperFormArray">
+    <mat-step>
+      <ng-template matStepLabel>Disclaimer</ng-template>
+      <p>{{ disclaimer }}</p>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    @for(consent of consents; track consent) {
+    <mat-step>
+      <ng-template matStepLabel>{{ consent.label }}</ng-template>
+      <app-step [consent]="consent" [parentForm]="stepperFormArray"></app-step>
+    </mat-step>
+    }
+    <mat-step>
+      <ng-template matStepLabel>Health Issues</ng-template>
+      <app-health-issues [parentForm]="stepperFormArray"></app-health-issues>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Agreement</ng-template>
+      <app-agreement [parentForm]="stepperFormArray"></app-agreement>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Personal Data</ng-template>
+      <app-personal-data [parentForm]="stepperFormArray"></app-personal-data>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Signature</ng-template>
+      <app-signature-pad [parentForm]="stepperFormArray"></app-signature-pad>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>ID</ng-template>
+      <app-webcam-snapshot
+        [parentForm]="stepperFormArray"
+      ></app-webcam-snapshot>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Preview consent</ng-template>
+      <p>
+        Preview the consent? (By clicking No you will be redirected to the home
+        screen and will need to refill again the consent)
+      </p>
+      <div>
+        <button mat-button (click)="displayPreview()">
+          Preview my consent form
+        </button>
+        <button mat-button (click)="cancelConsent()">No</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+  <!-- <button mat-button (click)="submitMockConsent()">submitMockConsent</button>-->
+</form>

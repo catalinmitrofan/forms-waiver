@@ -1,0 +1,95 @@
+<ng-container [formGroup]="personalDataFormGroup">
+  <p>First and last name</p>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      placeholder="First Name Last Name"
+      [formControl]="nameFormControl"
+    />
+  </mat-form-field>
+  <p>Preferred Pronouns</p>
+  <mat-form-field>
+    <mat-label>Preferred Pronouns</mat-label>
+    <input
+      matInput
+      placeholder="Preferred Pronouns"
+      [formControl]="pronounFormControl"
+    />
+  </mat-form-field>
+  <p>Phone</p>
+  <mat-form-field>
+    <mat-label>Phone</mat-label>
+    <input
+      type="tel"
+      matInput
+      placeholder="Phone"
+      [formControl]="phoneFormControl"
+    />
+  </mat-form-field>
+  <p>Date of Birth</p>
+  <mat-form-field>
+    <mat-label>Date of Birth</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [formControl]="dateOfBirthFormControl"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <p>Address</p>
+  <mat-form-field>
+    <mat-label>Address</mat-label>
+    <input matInput placeholder="Address" [formControl]="addressFormControl" />
+  </mat-form-field>
+  <p>City</p>
+  <mat-form-field>
+    <mat-label>City</mat-label>
+    <input matInput placeholder="City" [formControl]="cityFormControl" />
+  </mat-form-field>
+  <p>State</p>
+  <mat-form-field>
+    <mat-label>State</mat-label>
+    <mat-select name="state" [formControl]="stateFormControl">
+      @for (state of stateList; track state) {
+      <mat-option [value]="state.abbreviation">{{ state.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <p>Zip Code</p>
+  <mat-form-field>
+    <mat-label>Zip Code</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder="Zip Code"
+      [formControl]="zipFormControl"
+    />
+  </mat-form-field>
+  <p>Initial if I Have approved my design</p>
+  <mat-form-field>
+    <mat-label>Initials</mat-label>
+    <input
+      matInput
+      placeholder="Initials"
+      [formControl]="designApprovalFormControl"
+    />
+  </mat-form-field>
+  <p>Initial if I Have CHECKED MY SPELLING</p>
+  <mat-form-field>
+    <mat-label>Initials</mat-label>
+    <input
+      matInput
+      placeholder="Initials"
+      [formControl]="spellingApprovalFormControl"
+    />
+  </mat-form-field>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button [disabled]="disableNextButton" mat-button matStepperNext>
+      Next
+    </button>
+  </div>
+</ng-container>

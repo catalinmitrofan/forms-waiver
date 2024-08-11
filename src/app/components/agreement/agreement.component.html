@@ -1,0 +1,34 @@
+<ng-container [formGroup]="agreementFormGroup">
+  <p>Select your tattoo artist</p>
+  <mat-form-field>
+    <mat-label>Tattoo artist</mat-label>
+    <mat-select name="artist" [formControl]="artistFormControl">
+      @for (artist of tattooArtists; track artist) {
+      <mat-option [value]="artist.firstName">{{ artist.firstName }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <p>Where will be the tattoo located?</p>
+  <mat-form-field>
+    <mat-label>Location of Tatoo</mat-label>
+    <input
+      matInput
+      placeholder="Location of tattoo"
+      [formControl]="bodyLocationFormControl"
+    />
+  </mat-form-field>
+  <p>
+    By signing this form I am agreeing that {{ artist }} is to tattoo my:
+    {{ location }}. And in consideration of doing so I am releasing the
+    above-named artist and studio of all liability, claims,lawsuits, and demands
+    in: law or equity, to the extent allowed by law, Which I or my heirs may
+    have now or hereafter, arising from or complying with my request to be
+    tattooed.
+  </p>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button [disabled]="disableNextButton" mat-button matStepperNext>
+      Next
+    </button>
+  </div>
+</ng-container>

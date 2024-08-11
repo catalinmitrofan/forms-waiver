@@ -1,0 +1,36 @@
+<ng-container>
+  <ng-container>
+    <mat-label>Please provide picture of id</mat-label>
+    <br />
+    <mat-label
+      >Please use the phone in landscape mode to take the picture</mat-label
+    >
+    <br />
+    @if (showWebcam && !webcamImage) {
+    <webcam
+      [height]="500"
+      [width]="500"
+      [trigger]="triggerObservable"
+      (imageCapture)="handleImage($event)"
+      [videoOptions]="videoOptions"
+      [imageQuality]="1"
+      (initError)="handleInitError($event)"
+    ></webcam>
+    } @if(webcamImage) {
+    <div class="snapshot">
+      <img [src]="webcamImage.imageAsDataUrl" />
+      <canvas [hidden]="true" id="canvasImage"></canvas>
+    </div>
+    }
+  </ng-container>
+  <div>
+    <button mat-button (click)="takePicture()">Take picture</button>
+    <button mat-button (click)="clearPicture()">Clear picture</button>
+  </div>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button [disabled]="webcamImage === null" mat-button matStepperNext>
+      Next
+    </button>
+  </div>
+</ng-container>

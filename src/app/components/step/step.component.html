@@ -1,0 +1,15 @@
+<ng-container [formGroup]="stepFormGroup">
+  <p>
+    {{ consent.consent }}
+  </p>
+  <mat-form-field>
+    <mat-label>Initials</mat-label>
+    <input matInput placeholder="Initials" [formControl]="stepFormControl" />
+  </mat-form-field>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button [disabled]="disableNextButton" mat-button matStepperNext>
+      Next
+    </button>
+  </div>
+</ng-container>

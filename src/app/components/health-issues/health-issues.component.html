@@ -1,0 +1,35 @@
+<ng-container [formGroup]="healthIssuesFormGroup">
+  <p>
+    I agree to disclose any illness or disease on the line provided below. I
+    understand that the artist has the digression to deny a tattoo based on
+    illness due to reasons relating to healing and safety for the clients’
+    health. I will provide this information with the understanding that it
+    assists artists with preparing for my piece. I also understand that ANY
+    illness or disease can affect the healing of the tattoo and can have adverse
+    health effects. By initialing I agree to relieve the artist of all
+    responsibility for ALL potential issues related to these concerns.
+  </p>
+  <mat-form-field>
+    <mat-label>Health Issues</mat-label>
+    <input
+      matInput
+      placeholder="Health Issues"
+      [formControl]="healthIssuesFormControl"
+    />
+  </mat-form-field>
+  <p>Initials</p>
+  <mat-form-field>
+    <mat-label>Initials</mat-label>
+    <input
+      matInput
+      placeholder="Initials"
+      [formControl]="healthIssuesInitialsFormControl"
+    />
+  </mat-form-field>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button [disabled]="disableNextButton" mat-button matStepperNext>
+      Next
+    </button>
+  </div>
+</ng-container>

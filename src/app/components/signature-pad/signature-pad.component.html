@@ -1,0 +1,20 @@
+<ng-container>
+  <ng-container>
+    <mat-label>Please provide signature</mat-label>
+    <canvas
+      #canvas
+      (touchstart)="startDrawing($event)"
+      (touchmove)="moved($event)"
+      width="700"
+      height="200"
+    >
+    </canvas>
+    <button mat-button (click)="clearSignature()">Clear Signature</button>
+  </ng-container>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button [disabled]="disableNextButton" mat-button matStepperNext>
+      Next
+    </button>
+  </div>
+</ng-container>

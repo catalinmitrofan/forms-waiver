@@ -1,0 +1,20 @@
+<div class="container-div">
+  <mat-card class="card-custom" appearance="outlined">
+    <mat-card-header>
+      <div mat-card-avatar class="custom-header-image"></div>
+      <mat-card-title>Golden Falcon Tattoo and Piercing</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="img/background.jpeg" />
+    <mat-card-content>
+      <p>{{ homeScreenText }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <!--<button mat-button (click)="openPiercingWaiver()">
+        Piercing Consent
+      </button>-->
+      <button mat-button (click)="openTattooWaiver()">
+        Fill out Tattoo Consent
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
