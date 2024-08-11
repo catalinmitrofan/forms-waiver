@@ -1,7 +1,4 @@
-import {
-  Component,
-  Inject
-} from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -36,12 +33,13 @@ export class PreviewComponent {
 
   public submitConsent(): void {
     this.emailService.sendEmail(this.data.customerName, this.data.pdfFile);
+
     this.matSnackBar.open('Consent Forms submitted', 'X', { duration: 2000 });
     this.router.navigate(['/main']);
   }
 }
 
 export interface PreviewComponentDataInterface {
-  customerName: string,
-  pdfFile: Blob
+  customerName: string;
+  pdfFile: Blob;
 }
