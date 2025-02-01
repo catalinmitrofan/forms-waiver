@@ -34,6 +34,11 @@
       "consent": "I understand that a tattoo is a wound, and with any wound risk of infection from any outside source is possible. Upon signing and initialing this form I am agree to take responsibility for that risk. I will inform the management if I find that an artist is not being sterile with his/her set up before I proceed receiving my service. Once I am in the chair I have been satisfied with the technique the artist has used and wave all rights to claim otherwise after service has been provided.",
       "label": "Responsibility",
       "fieldName": "responsibility"
+    },
+    {
+      "consent": "I understand that I CAN NOT be pregnant or nursing, otherwise I CAN NOT be tattooed at this time.",
+      "label": "Pregnancy",
+      "fieldName": "pregnancy"
     }
   ],
   "disclaimer": "I certify that the information provided below is correct to the best of my knowledge. I enter this agreement on my own free will and am not under the influence of any substances that my hinder my ability to consent legally or ethically to the service (tattoo) provided. I also certify that I am at least 18 years of age."

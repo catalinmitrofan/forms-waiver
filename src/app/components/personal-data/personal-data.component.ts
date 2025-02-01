@@ -6,7 +6,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -42,7 +42,6 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
   public personalDataFormGroup: FormGroup;
 
   public nameFormControl: FormControl;
-  public pronounFormControl: FormControl;
   public phoneFormControl: FormControl;
   public dateOfBirthFormControl: FormControl;
   public addressFormControl: FormControl;
@@ -66,12 +65,10 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.nameFormControl = this.formBuilder.control('', Validators.required);
-    this.pronounFormControl = this.formBuilder.control('', Validators.required);
     this.phoneFormControl = this.formBuilder.control('', Validators.required);
     this.dateOfBirthFormControl = this.formBuilder.control(
       '',
-      Validators.required,
-  
+      Validators.required
     );
     this.addressFormControl = this.formBuilder.control('', Validators.required);
     this.cityFormControl = this.formBuilder.control('', Validators.required);
@@ -89,7 +86,6 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
 
     this.personalDataFormGroup = this.formBuilder.group({
       name: this.nameFormControl,
-      pronoun: this.pronounFormControl,
       phone: this.phoneFormControl,
       dateOfBirth: this.dateOfBirthFormControl,
       address: this.addressFormControl,
