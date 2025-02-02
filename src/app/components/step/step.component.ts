@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Consent } from '../../services/tattoo-waiver.service';
 import {
   FormArray,
   FormBuilder,
@@ -14,6 +13,7 @@ import {
 import { MatStepperModule } from '@angular/material/stepper';
 import { Subject, takeUntil } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
+import { Constants } from '../../helper/constants';
 @Component({
   selector: 'app-step',
   standalone: true,
@@ -30,7 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class StepComponent implements OnInit, OnDestroy {
   @Input()
-  public consent: Consent;
+  public consent: Constants.Consent;
 
   @Input()
   public parentForm: FormArray | undefined;

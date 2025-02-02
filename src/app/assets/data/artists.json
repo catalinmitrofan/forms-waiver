@@ -12,5 +12,11 @@
       "firstName": "Evan",
       "lastName": " Figueroa"
     }
+  ],
+  "piercingArtists": [
+    {
+      "firstName": "Kimberly",
+      "lastName": "Parton"
+    }
   ]
 }

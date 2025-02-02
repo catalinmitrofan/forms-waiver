@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -15,10 +15,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { PdfService } from '../../services/pdf.service';
-import {
-  Consent,
-  TattooWaiverService,
-} from '../../services/tattoo-waiver.service';
+import { TattooWaiverService } from '../../services/tattoo-waiver.service';
 import { AgreementComponent } from '../agreement/agreement.component';
 import { HealthIssuesComponent } from '../health-issues/health-issues.component';
 import { PersonalDataComponent } from '../personal-data/personal-data.component';
@@ -29,6 +26,8 @@ import {
 import { SignaturePadComponent } from '../signature-pad/signature-pad.component';
 import { StepComponent } from '../step/step.component';
 import { WebcamSnapshotComponent } from '../webcam-snapshot/webcam-snapshot.component';
+import { Constants } from '../../helper/constants';
+import { PiercingWaiverService } from '../../services/piercing-waiver.service';
 
 @Component({
   selector: 'app-step-provider',
@@ -47,29 +46,29 @@ import { WebcamSnapshotComponent } from '../webcam-snapshot/webcam-snapshot.comp
     PersonalDataComponent,
     SignaturePadComponent,
     WebcamSnapshotComponent,
-    PreviewComponent,
   ],
   templateUrl: './step-provider.component.html',
   styleUrl: './step-provider.component.scss',
 })
-export class StepProviderComponent {
+export class StepProviderComponent implements OnInit {
+  @Input() type: Constants.FormType;
+
   public isLinear = true;
 
   public stepperFormGroup: FormGroup;
   public stepperFormArray: FormArray;
-  public consents: Consent[];
+  public consents: Constants.Consent[];
   public disclaimer: string;
 
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly tattooWaiverService: TattooWaiverService,
+    private readonly piercingWaiverService: PiercingWaiverService,
     private readonly router: Router,
     private readonly matSnackBar: MatSnackBar,
     private readonly pdfService: PdfService,
     private readonly dialog: MatDialog
   ) {
-    this.disclaimer = this.tattooWaiverService.getDisclaimer();
-    this.consents = this.tattooWaiverService.getConsents();
     this.stepperFormArray = this.formBuilder.array([]);
 
     this.stepperFormGroup = this.formBuilder.group({
@@ -77,26 +76,43 @@ export class StepProviderComponent {
     });
   }
 
+  public ngOnInit(): void {
+    if (this.type === Constants.FormType.PIERCING) {
+      this.disclaimer = this.piercingWaiverService.getDisclaimer();
+      this.consents = this.piercingWaiverService.getConsents();
+    } else {
+      this.disclaimer = this.tattooWaiverService.getDisclaimer();
+      this.consents = this.tattooWaiverService.getConsents();
+    }
+  }
+
   public displayPreview(): void {
     const formValues = this.stepperFormArray.getRawValue();
-    const customerName = this.pdfService.getCustomerName(formValues);
-    this.pdfService
-      .generatePdf(formValues)
-      .pipe(first())
-      .subscribe((pdfFile) => {
-        const data: PreviewComponentDataInterface = {
-          customerName,
-          pdfFile,
-        };
+    const customerName =
+      this.type === Constants.FormType.PIERCING
+        ? this.pdfService.getPiercingCustomerName(formValues)
+        : this.pdfService.getTattooCustomerName(formValues);
 
-        this.dialog.open(PreviewComponent, {
-          data,
-          height: 'calc(100% - 30px)',
-          width: 'calc(100% - 30px)',
-          maxWidth: '100%',
-          maxHeight: '100%',
-        });
+    const pdfFile$ =
+      this.type === Constants.FormType.PIERCING
+        ? this.pdfService.generatePiercingPdf(formValues)
+        : this.pdfService.generateTattooPdf(formValues);
+
+    pdfFile$.pipe(first()).subscribe((pdfFile) => {
+      const data: PreviewComponentDataInterface = {
+        customerName,
+        pdfFile,
+        consentType: this.type,
+      };
+
+      this.dialog.open(PreviewComponent, {
+        data,
+        height: 'calc(100% - 30px)',
+        width: 'calc(100% - 30px)',
+        maxWidth: '100%',
+        maxHeight: '100%',
       });
+    });
   }
 
   public cancelConsent(): void {

@@ -19,11 +19,17 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Agreement</ng-template>
-      <app-agreement [parentForm]="stepperFormArray"></app-agreement>
+      <app-agreement
+        [parentForm]="stepperFormArray"
+        [type]="type"
+      ></app-agreement>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Personal Data</ng-template>
-      <app-personal-data [parentForm]="stepperFormArray"></app-personal-data>
+      <app-personal-data
+        [parentForm]="stepperFormArray"
+        [type]="type"
+      ></app-personal-data>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Signature</ng-template>

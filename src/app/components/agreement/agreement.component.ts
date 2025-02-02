@@ -14,10 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { Subject, takeUntil } from 'rxjs';
-import {
-  TattooArtist,
-  TattooArtistsService,
-} from '../../services/tattoo-artists.service';
+import { Artist, ArtistsService } from '../../services/artists.service';
+import { Constants } from '../../helper/constants';
 
 @Component({
   selector: 'app-agreement',
@@ -38,6 +36,8 @@ export class AgreementComponent implements OnInit, OnDestroy {
   @Input()
   public parentForm: FormArray | undefined;
 
+  @Input() type: Constants.FormType;
+
   public artist = '';
   public location = '';
 
@@ -47,16 +47,32 @@ export class AgreementComponent implements OnInit, OnDestroy {
   private destroyTrigger = new Subject<void>();
   public disableNextButton = true;
 
-  public tattooArtists: TattooArtist[];
+  public serviceAction: string;
+  public serviceName: string;
+  public serviceOffered: string;
+
+  public artists: Artist[];
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly tattooArtistsService: TattooArtistsService
-  ) {
-    this.tattooArtists = this.tattooArtistsService.getTattooArtists();
-  }
+    private readonly artistsService: ArtistsService
+  ) {}
 
   public ngOnInit(): void {
+    this.artists =
+      this.type === Constants.FormType.PIERCING
+        ? this.artistsService.getPiercingArtists()
+        : this.artistsService.getTattooArtists();
+
+    this.serviceAction =
+      this.type === Constants.FormType.PIERCING ? 'pierce' : 'tattoo';
+
+    this.serviceName =
+      this.type === Constants.FormType.PIERCING ? 'piercing' : 'tattoo';
+
+    this.serviceOffered =
+      this.type === Constants.FormType.PIERCING ? 'pierced' : 'tattooed';
+
     this.artistFormControl = this.formBuilder.control('', Validators.required);
     this.bodyLocationFormControl = this.formBuilder.control(
       '',

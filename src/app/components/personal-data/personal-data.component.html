@@ -59,6 +59,7 @@
       [formControl]="zipFormControl"
     />
   </mat-form-field>
+  @if (!piercingMode) {
   <p>Initial if I Have approved my design</p>
   <mat-form-field>
     <mat-label>Initials</mat-label>
@@ -77,6 +78,7 @@
       [formControl]="spellingApprovalFormControl"
     />
   </mat-form-field>
+  }
   <div>
     <button mat-button matStepperPrevious>Back</button>
     <button [disabled]="disableNextButton" mat-button matStepperNext>

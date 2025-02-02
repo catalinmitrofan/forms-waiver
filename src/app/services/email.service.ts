@@ -5,14 +5,19 @@ import { catchError, first, of } from 'rxjs';
 import * as emailConfig from '../assets/data/email-config.json';
 import * as mailGunData from '../assets/data/mail-gun.json';
 import { DateHelperUtilities } from '../helper/date-helper-utilities';
+import { Constants } from '../helper/constants';
 
 @Injectable({ providedIn: 'root' })
 export class EmailService {
   constructor(private readonly http: HttpClient) {}
 
-  public sendEmail(user: string, file?: Blob): void {
+  public sendEmail(
+    user: string,
+    consentType: Constants.FormType,
+    file?: Blob
+  ): void {
     const headers = this.buildEmailHeaders();
-    const email = this.buildEmail(user, file);
+    const email = this.buildEmail(user, consentType, file);
     const url = this.getEmailUrl();
 
     this.http
@@ -41,11 +46,19 @@ export class EmailService {
     return headers;
   }
 
-  private buildEmail(user: string, file?: Blob): FormData {
+  private buildEmail(
+    user: string,
+    consentType: Constants.FormType,
+    file?: Blob
+  ): FormData {
+    const subject = `${emailConfig.subject} ${user} for ${consentType
+      .toString()
+      .toLowerCase()}`;
+
     const formData = new FormData();
     formData.append('from', `${user} <${emailConfig.sender}>`);
     formData.append('to', `${emailConfig.receiver}`);
-    formData.append('subject', `${emailConfig.subject} ${user}`);
+    formData.append('subject', subject);
     formData.append('text', `${emailConfig.emailContent} ${user}!`);
 
     if (file) {

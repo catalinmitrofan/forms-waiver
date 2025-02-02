@@ -1,0 +1,45 @@
+{
+  "consents": [
+    {
+      "consent": "I am of the understanding that I will be pierced in a method that is both sterile and efficient as well as compliant with local and federal piercing regulations.",
+      "label": "Sterility",
+      "fieldName": "sterile"
+    },
+    {
+      "consent": "I agree to heal my piercing according to the artist recommendation and use the described aftercare products and methods. As well as come to us if there are any issues once you leave the building till its healed.",
+      "label": "Recommendation",
+      "fieldName": "recommendations"
+    },
+    {
+      "consent": "I understand that my piercing can take months to a year to heal depending on body and placement, and you agree to not change it or touch it unless cleaning until that time has passed.",
+      "label": "No touching",
+      "fieldName": "touching"
+    },
+    {
+      "consent": "I understand that my body is different then any ones and my piercing will heal unique to me.",
+      "label": "Healing",
+      "fieldName": "healing"
+    },
+    {
+      "consent": "I will inform the studio of ANY known allergies, and that people may be allergic to metals and equipment used and assume the risk of any reaction.",
+      "label": "Allergies",
+      "fieldName": "allergies"
+    },
+    {
+      "consent": "I understand that once I agree to placement the artist is going to poke that location. And we will not re-pierce based on clients changing their minds.",
+      "label": "Placement",
+      "fieldName": "placement"
+    },
+    {
+      "consent": "I understand that a piercing is a wound, and with any wound risk of infection from any outside source is possible. Upon signing and initialing this form I am agree to take responsibility for that risk. I will inform the management if I find that an artist is not being sterile with his/her set up before I proceed receiving my service. Once I am in the chair I have been satisfied with the technique the artist has used and wave all rights to claim otherwise after service has been provided.",
+      "label": "Risk of infection",
+      "fieldName": "infection"
+    },
+    {
+      "consent": "I am not pregnant or nursing.",
+      "label": "Pregnancy",
+      "fieldName": "pregnancy"
+    }
+  ],
+  "disclaimer": "I certify that the information provided below is correct to the best of my knowledge. I enter this agreement on my own free will and am not under the influence of any substances that might hinder my ability to consent legally or ethically to the service provided. I also certify that I am at least 18 years of age."
+}

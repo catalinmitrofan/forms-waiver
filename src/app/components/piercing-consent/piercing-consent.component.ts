@@ -6,15 +6,14 @@ import { Router } from '@angular/router';
 import { Constants } from '../../helper/constants';
 
 @Component({
-  selector: 'app-tattoo-consent',
+  selector: 'app-piercing-consent',
   standalone: true,
   imports: [MatCardModule, MatButtonModule, StepProviderComponent],
-  templateUrl: './tattoo-consent.component.html',
-  styleUrl: './tattoo-consent.component.scss',
+  templateUrl: './piercing-consent.component.html',
+  styleUrl: './piercing-consent.component.scss',
 })
-export class TattooConsentComponent {
-  public type = Constants.FormType.TATTOO;
-
+export class PiercingConsentComponent {
+  public type = Constants.FormType.PIERCING;
   constructor(private readonly router: Router) {}
 
   public navigateHome() {

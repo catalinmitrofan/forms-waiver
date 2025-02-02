@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { Subject, takeUntil } from 'rxjs';
 import { USState, USStatesService } from '../../services/us-states.service';
+import { Constants } from '../../helper/constants';
 
 @Component({
   selector: 'app-personal-data',
@@ -39,6 +40,8 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
   @Input()
   public parentForm: FormArray | undefined;
 
+  @Input() type: Constants.FormType;
+
   public personalDataFormGroup: FormGroup;
 
   public nameFormControl: FormControl;
@@ -54,6 +57,8 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
   private destroyTrigger = new Subject<void>();
   public disableNextButton = true;
 
+  public piercingMode = false;
+
   public stateList: USState[];
 
   constructor(
@@ -64,6 +69,8 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.piercingMode = this.type === Constants.FormType.PIERCING;
+
     this.nameFormControl = this.formBuilder.control('', Validators.required);
     this.phoneFormControl = this.formBuilder.control('', Validators.required);
     this.dateOfBirthFormControl = this.formBuilder.control(
@@ -74,15 +81,13 @@ export class PersonalDataComponent implements OnInit, OnDestroy {
     this.cityFormControl = this.formBuilder.control('', Validators.required);
     this.stateFormControl = this.formBuilder.control('', [Validators.required]);
     this.zipFormControl = this.formBuilder.control('', Validators.required);
-    this.designApprovalFormControl = this.formBuilder.control(
-      '',
-      Validators.required
-    );
+    this.designApprovalFormControl = this.formBuilder.control('');
+    this.spellingApprovalFormControl = this.formBuilder.control('');
 
-    this.spellingApprovalFormControl = this.formBuilder.control(
-      '',
-      Validators.required
-    );
+    if (this.type === Constants.FormType.TATTOO) {
+      this.designApprovalFormControl.setValidators([Validators.required]);
+      this.spellingApprovalFormControl.setValidators([Validators.required]);
+    }
 
     this.personalDataFormGroup = this.formBuilder.group({
       name: this.nameFormControl,

@@ -24,6 +24,7 @@ export class HomeScreenComponent {
 
   public openPiercingWaiver(): void {
     console.log('openPiercingWaiver');
+    this.router.navigate(['/piercing']);
   }
 
   public openTattooWaiver(): void {

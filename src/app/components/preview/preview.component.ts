@@ -6,6 +6,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { EmailService } from '../../services/email.service';
+import { Constants } from '../../helper/constants';
 
 @Component({
   selector: 'app-preview',
@@ -32,8 +33,12 @@ export class PreviewComponent {
   }
 
   public submitConsent(): void {
-    this.emailService.sendEmail(this.data.customerName, this.data.pdfFile);
-    console.log('console')
+    this.emailService.sendEmail(
+      this.data.customerName,
+      this.data.consentType,
+      this.data.pdfFile
+    );
+    console.log('console');
     this.matSnackBar.open('Consent Forms submitted', 'X', { duration: 2000 });
     this.router.navigate(['/main']);
   }
@@ -42,4 +47,5 @@ export class PreviewComponent {
 export interface PreviewComponentDataInterface {
   customerName: string;
   pdfFile: Blob;
+  consentType: Constants.FormType;
 }
